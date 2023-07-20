@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net7.0-windows</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <Title>QuickMemo2Word</Title>
@@ -10,7 +10,21 @@
     <Copyright>Libre de uso bajo tu responsabilidad</Copyright>
     <PackageProjectUrl>wordpress.elsacapuntes.com</PackageProjectUrl>
     <RepositoryUrl>https://github.com/danilotestoni/QuickMemo2Word.git</RepositoryUrl>
+    <StartupObject>QuickMemo2Word.Program</StartupObject>
+    <ApplicationIcon>img\logo.ico</ApplicationIcon>
   </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>embedded</DebugType>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DebugType>embedded</DebugType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="img\logo.ico" />
+  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="DocX" Version="2.4.0" />
