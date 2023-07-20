@@ -23,6 +23,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Setup\Release\**" />
+    <EmbeddedResource Remove="Setup\Release\**" />
+    <None Remove="Setup\Release\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="img\logo.ico" />
   </ItemGroup>
   <ItemGroup>
