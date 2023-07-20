@@ -10,7 +10,6 @@ I have created this program to meet a specific need and I thought it would have 
 I publish it experimentally and I will not give support.
 
 # Usage:
-To convert the .lqm files you have to copy them all to the folder where the executable is located: "\QuickMemo2Word\bin\Release\net7.0" and then double click on the QuickMemo2Word.exe.
+To convert the .lqm files you have to copy them all to the folder **WorkingDirectory** where the executable is located: "C:\QuickMemo2Word\WorkingDirectory" and then double click on **QuickMemo2Word.exe**.
 
-The program will be in charge of creating the documents and saving them in the folders corresponding to the categories of the notes.
-
+The program will create all the documents and saving them in the folders named like the categories of the notes.

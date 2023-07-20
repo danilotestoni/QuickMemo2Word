@@ -24,9 +24,9 @@ namespace QuickMemo2Word {
 
                 // Obtener el nombre del archivo sin extensión
                 string nombreArchivo = Path.GetFileNameWithoutExtension(archivoLqm);
-
+                string workingDirectory = Path.Combine(Directory.GetCurrentDirectory(), "WorkingDirectory");
                 // Crear una carpeta con el mismo nombre del archivo
-                string rutaCarpetaDestino = Path.Combine(Directory.GetCurrentDirectory(), nombreArchivo);
+                string rutaCarpetaDestino = Path.Combine(workingDirectory, nombreArchivo);
                 string rutaNuevaCarpeta = CrearCarpeta(rutaCarpetaDestino);
                 Console.WriteLine($"Ruta de la nueva carpeta: {rutaNuevaCarpeta}");
 
@@ -38,8 +38,9 @@ namespace QuickMemo2Word {
 
                 //Procesar los archivos dentro de la rutaNuevaCarpeta
                 MemoInfoModel memoInfo = LeerArchivoMemoInfo(Path.Combine(rutaNuevaCarpeta, "memoinfo.jlqm"));
+                string categoryName = !string.IsNullOrEmpty(memoInfo.Category.CategoryName) ? memoInfo.Category.CategoryName : "Sin_Categoría";
 
-                string rutaCarpetaWord = CrearCarpeta(memoInfo.Category.CategoryName);
+                string rutaCarpetaWord = CrearCarpeta(Path.Combine(workingDirectory, categoryName));
 
                 // Ruta y nombre del nuevo archivo Word que se va a crear
                 string rutaArchivoWord = Path.Combine(rutaCarpetaWord, nombreArchivo + ".docx");
@@ -54,7 +55,7 @@ namespace QuickMemo2Word {
                             Bold = true,
                         };
 
-                        documento.InsertParagraph(memoInfo.Category.CategoryName, false, formatoTitulo);
+                        documento.InsertParagraph(categoryName, false, formatoTitulo);
                         documento.InsertParagraph().SpacingAfter(20D);
 
                         // Agregar párrafos con diferentes estilos
@@ -133,12 +134,12 @@ namespace QuickMemo2Word {
             }
         }
 
-        static string CrearCarpeta(string nombreCarpeta) {
-            string rutaNuevaCarpeta = Path.Combine(Directory.GetCurrentDirectory(), nombreCarpeta);
+        static string CrearCarpeta(string rutaNuevaCarpeta) {
+            //string rutaNuevaCarpeta = Path.Combine(Directory.GetCurrentDirectory(), nombreCarpeta);
 
             try {
                 Directory.CreateDirectory(rutaNuevaCarpeta);
-                Console.WriteLine($"Carpeta \"{nombreCarpeta}\" creada exitosamente.");
+                Console.WriteLine($"Carpeta \"{rutaNuevaCarpeta}\" creada exitosamente.");
                 return rutaNuevaCarpeta;
             } catch (Exception ex) {
                 Console.WriteLine($"Error al crear la carpeta: {ex.Message}");

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -9,10 +9,14 @@
     <Description>QuickMemo2Word convierte ficheros .lqm en ficheros .docx</Description>
     <Copyright>Libre de uso bajo tu responsabilidad</Copyright>
     <PackageProjectUrl>wordpress.elsacapuntes.com</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/danilotestoni/QuickMemo2Word.git</RepositoryUrl>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="DocX" Version="2.4.0" />
   </ItemGroup>
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="IF NOT EXIST &quot;$(TargetDir)\WorkingDirectory\&quot; (mkdir &quot;$(TargetDir)\WorkingDirectory&quot;)&#xD;&#xA;IF NOT EXIST &quot;$(PublishDir)\WorkingDirectory\&quot; (mkdir &quot;$(PublishDir)\WorkingDirectory&quot;)" />
+  </Target>
 
 </Project>

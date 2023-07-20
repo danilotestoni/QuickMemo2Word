@@ -9,7 +9,7 @@ namespace QuickMemo2Word {
          static void Main()
         {
             // Obtener la ruta de la carpeta donde se ejecuta el programa
-            string rutaCarpeta = Directory.GetCurrentDirectory();
+            string rutaCarpeta = Path.Combine(Directory.GetCurrentDirectory(), "WorkingDirectory");
 
             // Recorrer la carpeta y procesar los archivos .lqm encontrados
             try
